@@ -7,5 +7,6 @@ namespace MyTwit.Models
 {
     public class User
     {
+        private int test;
     }
 }
