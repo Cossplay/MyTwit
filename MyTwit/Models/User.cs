@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using MySql.Data.MySqlClient;
 
 namespace MyTwit.Models
 {
@@ -12,7 +13,7 @@ namespace MyTwit.Models
         public string Login { get; set; }
         public string Password { get; set; }
 
-        public static string CreateMd5(string input)
+        public string CreateMd5(string input)
         {
             using (var md5Hash = MD5.Create())
             {
@@ -28,10 +29,11 @@ namespace MyTwit.Models
             }
         }
 
-        public static bool VerifyMd5Hash(string input, string hash)
+        public bool VerifyMd5Hash(string input, string hash)
         {
             var hashOfinput = CreateMd5(input);
-            return hash.Equals(hash);
+            return hashOfinput.Equals(hash);
         }
+
     }
 }
