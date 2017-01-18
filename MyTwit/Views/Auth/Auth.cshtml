@@ -1,7 +1,36 @@
-﻿
+﻿@using System.Web.Script.Services
+
 @{
     ViewBag.Title = "html for login";
 }
 
 <h2>Auth</h2>
-
+<form role="form" id ="ourForm">
+    <div class="form-group">
+        <label for="inputUser">Логин</label>
+        <input type="text" class="form-control" id="inputUser" placeholder="Введите логин">
+    </div>
+    <div class="form-group">
+        <label for="inputPass">Пароль</label>
+        <input type="password" class="form-control" id="inputPass" placeholder="Пароль">
+    </div>
+    <button id="button" type="button" class="btn btn-success">Войти</button>
+</form>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#button").click(function () {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("SignIn", "Auth")',
+                data: { inputUser: $("#inputUser").val(), inputPass: $("#inputPass").val() },
+                success : function(data) {
+                    if (data === true) {
+                        location.href = '@Url.Action("Index","Home")';
+                    } else {
+                        alert("логин или пароль не соотв");
+                    } 
+                }
+            });
+        });
+    })
+</script>

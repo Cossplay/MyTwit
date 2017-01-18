@@ -9,17 +9,44 @@ namespace MyTwit.Controllers
 {
     public class AuthController : Controller
     {
-        // GET: Auth
-        public ActionResult Auth()
+        // GET: SingIn
+        public JsonResult SignIn(string inputUser, string inputPass)
         {
             Repository rep = new Repository();
-            User user = rep.GetUser("Cossplay");
+            User user = rep.GetUser(inputUser);
             if (user != null)
             {
                 string hash = user.CreateMd5(user.Password);
-                bool res = user.VerifyMd5Hash("123456", hash);
+                bool res = user.VerifyMd5Hash(inputPass, hash);
+
+                if (res)
+                {
+                    Session["IsAuth"] = true;
+                    Session["Login"] = inputUser;
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }else Session["IsAuth"] = false;
+            }
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Auth()
+        {
+            if (IsAuth())
+            {
+                return View("~/Views/Home/Index.cshtml");
             }
             return View();
+        }
+
+        public bool IsAuth()
+        {
+            bool res = false;
+
+            if (Session["IsAuth"] != null)
+            {
+                res = (bool) Session["IsAuth"];
+            }
+            return res;
         }
     }
 }
