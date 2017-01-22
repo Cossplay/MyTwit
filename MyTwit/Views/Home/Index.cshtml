@@ -4,4 +4,17 @@
 }
 
 <h2>Index</h2>
-
+<button type="button" id="out" class="btn btn-danger">Выход</button>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#out").click(function () {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("Out", "Auth")',
+                success: function (data) {
+                    location.href = data;
+                }
+            });
+        });
+    })
+</script>

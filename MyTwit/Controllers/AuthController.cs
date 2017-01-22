@@ -16,15 +16,18 @@ namespace MyTwit.Controllers
             User user = rep.GetUser(inputUser);
             if (user != null)
             {
-                string hash = user.CreateMd5(user.Password);
-                bool res = user.VerifyMd5Hash(inputPass, hash);
+                // хэш пасса должен приходить из базы
+                string hash = Hash.CreateMd5(user.Password);
+                bool res = Hash.VerifyMd5Hash(inputPass, hash);
 
                 if (res)
                 {
                     Session["IsAuth"] = true;
                     Session["Login"] = inputUser;
-                    return Json(true, JsonRequestBehavior.AllowGet);
-                }else Session["IsAuth"] = false;
+                    var jsonData = new { result = true, url = @Url.Action("Index", "Home")};
+                    return Json(jsonData, JsonRequestBehavior.AllowGet);
+                }
+                Session["IsAuth"] = false;
             }
             return Json(false, JsonRequestBehavior.AllowGet);
         }
@@ -47,6 +50,12 @@ namespace MyTwit.Controllers
                 res = (bool) Session["IsAuth"];
             }
             return res;
+        }
+
+        public JsonResult Out()
+        {
+            Session.Clear();
+            return Json(@Url.Action("Auth","Auth"), JsonRequestBehavior.AllowGet);
         }
     }
 }

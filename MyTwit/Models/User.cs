@@ -12,28 +12,5 @@ namespace MyTwit.Models
     {
         public string Login { get; set; }
         public string Password { get; set; }
-
-        public string CreateMd5(string input)
-        {
-            using (var md5Hash = MD5.Create())
-            {
-                var data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-                var sb = new StringBuilder();
-                foreach (var b in data)
-                {
-                    sb.Append(b.ToString("x2"));
-                }
-
-                return sb.ToString();
-            }
-        }
-
-        public bool VerifyMd5Hash(string input, string hash)
-        {
-            var hashOfinput = CreateMd5(input);
-            return hashOfinput.Equals(hash);
-        }
-
     }
 }

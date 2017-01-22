@@ -11,7 +11,12 @@ namespace MyTwit.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            if (Session["IsAuth"] != null && (bool)Session["IsAuth"] == true) 
+            {
+
+                return View();
+            }
+            return View("~/Views/Auth/Auth.cshtml");
         }
     }
 }

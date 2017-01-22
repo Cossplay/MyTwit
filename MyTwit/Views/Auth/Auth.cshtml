@@ -23,11 +23,11 @@
                 type: "GET",
                 url: '@Url.Action("SignIn", "Auth")',
                 data: { inputUser: $("#inputUser").val(), inputPass: $("#inputPass").val() },
-                success : function(data) {
-                    if (data === true) {
-                        location.href = '@Url.Action("Index","Home")';
+                success: function (data) {
+                    if (data.result === true) {
+                        location.href = data.url;
                     } else {
-                        alert("логин или пароль не соотв");
+                        alert("Логи или пароль неправильный");
                     } 
                 }
             });
