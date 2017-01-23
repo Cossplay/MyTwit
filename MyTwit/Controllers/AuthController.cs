@@ -16,10 +16,7 @@ namespace MyTwit.Controllers
             User user = rep.GetUser(inputUser);
             if (user != null)
             {
-                // хэш пасса должен приходить из базы
-                string hash = Hash.CreateMd5(user.Password);
-                bool res = Hash.VerifyMd5Hash(inputPass, hash);
-
+                bool res = Hash.VerifyMd5Hash(inputPass, user.Password);
                 if (res)
                 {
                     Session["IsAuth"] = true;
@@ -41,10 +38,9 @@ namespace MyTwit.Controllers
             return View();
         }
 
-        public bool IsAuth()
+        private bool IsAuth()
         {
             bool res = false;
-
             if (Session["IsAuth"] != null)
             {
                 res = (bool) Session["IsAuth"];
