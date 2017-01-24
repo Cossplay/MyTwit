@@ -161,7 +161,7 @@
     </Compile>
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Models\Hash.cs" />
-    <Compile Include="Models\Repository.cs" />
+    <Compile Include="Models\UserRepository.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\NinjectDependencyResolver.cs" />
