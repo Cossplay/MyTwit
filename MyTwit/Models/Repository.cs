@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿
 using MySql.Data.MySqlClient;
+using MyTwit.Interfaces;
 
 namespace MyTwit.Models
 {
-    public class Repository
+    public class UserRepository : IUserRepository
     {
         private static string CONNECTION_STRING = @"Server=127.0.0.1;User Id = root; Password ='';Database = MyTwit";
-
         public User GetUser(string username)
         {
             using (var conn = new MySqlConnection(CONNECTION_STRING))
@@ -24,6 +21,6 @@ namespace MyTwit.Models
                 }
                 return null;
             }
-        } 
+        }
     }
 }

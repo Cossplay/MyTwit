@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using MyTwit.Interfaces;
 using MyTwit.Models;
 
 namespace MyTwit.Controllers
 {
     public class AuthController : Controller
     {
-        // GET: SingIn
+        private IUserRepository repo;
+        // Constructor
+        public AuthController(IUserRepository rep)
+        {
+            repo = rep;
+        }
+        // GET: SingIn при нажатии на кнопку входа
         public JsonResult SignIn(string inputUser, string inputPass)
         {
-            Repository rep = new Repository();
-            User user = rep.GetUser(inputUser);
+            User user = repo.GetUser(inputUser);
             if (user != null)
             {
                 bool res = Hash.VerifyMd5Hash(inputPass, user.Password);
@@ -28,7 +30,7 @@ namespace MyTwit.Controllers
             }
             return Json(false, JsonRequestBehavior.AllowGet);
         }
-
+        //При обращении к Auth url
         public ActionResult Auth()
         {
             if (IsAuth())
@@ -37,7 +39,7 @@ namespace MyTwit.Controllers
             }
             return View();
         }
-
+        //авторизован ли пользователь
         private bool IsAuth()
         {
             bool res = false;
@@ -47,7 +49,7 @@ namespace MyTwit.Controllers
             }
             return res;
         }
-
+        // При нажатии на кнопку выход(выходит из аккаунта(очистка сессии))
         public JsonResult Out()
         {
             Session.Clear();
