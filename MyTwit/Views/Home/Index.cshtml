@@ -3,9 +3,9 @@
     ViewBag.Title = "main html";
 }
 
-<h2>Index</h2>
-<button type="button" id="out" class="btn btn-danger">Выход</button>
-<script type="text/javascript">
+<h2>@Session["Login"]</h2>
+<input type="button" class="btn btn-danger" value="Выход" onclick="location.href = '@Url.Action("Out","Auth")'"/>
+<!--<script type="text/javascript">
     $(document).ready(function() {
         $("#out").click(function () {
             $.ajax({
@@ -17,4 +17,4 @@
             });
         });
     })
-</script>
+</script>-->

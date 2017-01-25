@@ -10,5 +10,6 @@ namespace MyTwit.Interfaces
     public interface IUserRepository
     {
         User GetUser(string username);
+        void SignUp(string username, string pass);
     }
 }

@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "SignUp";
+}
+
+<h2>SignUp</h2>
+<form method="post" action="@Url.Action("SignUp", "Registration")">
+    <div class="form-group">
+        <label for="regUsername">Логин</label>
+        <input type="text" class="form-control" id="regUsername" name="regUsername" placeholder="Введите логин" required/>
+    </div>
+    <div class="form-group">
+        <label for="regPass">Пароль</label>
+        <input type="password" class="form-control" id="regPass" name="regPass" placeholder="Введите пароль" required/>
+    </div>
+    <div class="form-group">
+        <label for="repeatPass">Повторите пароль</label>
+        <input type="password" class="form-control" id="repeatPass" name="repeatPass" placeholder="Повторите пароль" required/>
+    </div>
+    <input type="submit" class="btn btn-primary"/>
+</form>

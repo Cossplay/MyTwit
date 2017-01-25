@@ -22,5 +22,13 @@ namespace MyTwit.Models
                 return null;
             }
         }
+        public void SignUp(string username, string pass)
+        {
+            using (var conn = new MySqlConnection(CONNECTION_STRING))
+            {
+                conn.Open();
+                new MySqlCommand($"INSERT INTO users (username, password) VALUES ('{username}', '{pass}')", conn).ExecuteNonQuery();
+            }
+        }
     }
 }

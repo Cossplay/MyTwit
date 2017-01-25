@@ -13,7 +13,8 @@ namespace MyTwit.Controllers
             repo = rep;
         }
         // GET: SingIn при нажатии на кнопку входа
-        public JsonResult SignIn(string inputUser, string inputPass)
+        [HttpPost]
+        public ActionResult SignIn(string inputUser, string inputPass)
         {
             User user = repo.GetUser(inputUser);
             if (user != null)
@@ -23,12 +24,12 @@ namespace MyTwit.Controllers
                 {
                     Session["IsAuth"] = true;
                     Session["Login"] = inputUser;
-                    var jsonData = new { result = true, url = @Url.Action("Index", "Home")};
-                    return Json(jsonData, JsonRequestBehavior.AllowGet);
+                    //var jsonData = new { result = true, url = @Url.Action("Index", "Home")};
+                    return Redirect("/Home/Index");
                 }
                 Session["IsAuth"] = false;
             }
-            return Json(false, JsonRequestBehavior.AllowGet);
+            return View("Auth");
         }
         //При обращении к Auth url
         public ActionResult Auth()
@@ -50,10 +51,10 @@ namespace MyTwit.Controllers
             return res;
         }
         // При нажатии на кнопку выход(выходит из аккаунта(очистка сессии))
-        public JsonResult Out()
+        public RedirectResult Out()
         {
             Session.Clear();
-            return Json(@Url.Action("Auth","Auth"), JsonRequestBehavior.AllowGet);
+            return Redirect("Auth");
         }
     }
 }
