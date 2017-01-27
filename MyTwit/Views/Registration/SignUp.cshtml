@@ -1,4 +1,4 @@
-﻿
+﻿@model MyTwit.Models.User
 @{
     ViewBag.Title = "SignUp";
 }
@@ -6,16 +6,19 @@
 <h2>SignUp</h2>
 <form method="post" action="@Url.Action("SignUp", "Registration")">
     <div class="form-group">
-        <label for="regUsername">Логин</label>
-        <input type="text" class="form-control" id="regUsername" name="regUsername" placeholder="Введите логин" required/>
+        <label for="Login">Логин</label>
+        <input type="text" class="form-control" id="Login" name="Login" placeholder="Введите логин">
+        @Html.ValidationMessageFor(model => model.Login)
     </div>
     <div class="form-group">
-        <label for="regPass">Пароль</label>
-        <input type="password" class="form-control" id="regPass" name="regPass" placeholder="Введите пароль" required/>
+        <label for="Password">Пароль</label>
+        <input type="password" class="form-control" id="Password" name="Password" placeholder="Пароль">
+        @Html.ValidationMessageFor(model => model.Password)
     </div>
     <div class="form-group">
-        <label for="repeatPass">Повторите пароль</label>
-        <input type="password" class="form-control" id="repeatPass" name="repeatPass" placeholder="Повторите пароль" required/>
+        <label for="ConfirmPassword">Повторите пароль</label>
+        <input type="password" class="form-control" id="ConfirmPassword" name="ConfirmPassword" placeholder="Повторите пароль"/>
+        @Html.ValidationMessageFor(model => model.ConfirmPassword)
     </div>
     <input type="submit" class="btn btn-primary"/>
 </form>

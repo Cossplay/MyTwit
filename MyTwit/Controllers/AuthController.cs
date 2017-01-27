@@ -14,22 +14,21 @@ namespace MyTwit.Controllers
         }
         // GET: SingIn при нажатии на кнопку входа
         [HttpPost]
-        public ActionResult SignIn(string inputUser, string inputPass)
+        public ActionResult SignIn(User user)
         {
-            User user = repo.GetUser(inputUser);
-            if (user != null)
+            User getUser = null;
+            if (ModelState.IsValid && (getUser = repo.GetUser(user.Login)) != null)
             {
-                bool res = Hash.VerifyMd5Hash(inputPass, user.Password);
+                var res = Hash.VerifyMd5Hash(user.Password, getUser.Password);
                 if (res)
                 {
                     Session["IsAuth"] = true;
-                    Session["Login"] = inputUser;
-                    //var jsonData = new { result = true, url = @Url.Action("Index", "Home")};
+                    Session["Login"] = getUser.Login;
                     return Redirect("/Home/Index");
                 }
                 Session["IsAuth"] = false;
             }
-            return View("Auth");
+            return View("Auth", getUser);
         }
         //При обращении к Auth url
         public ActionResult Auth()

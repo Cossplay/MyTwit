@@ -22,13 +22,16 @@ namespace MyTwit.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult SignUp(string regUsername, string regPass)
+        public ActionResult SignUp(User user)
         {
-            if (rep.GetUser(regUsername) == null)
+            if (ModelState.IsValid)
             {
-                string hashPass = Hash.CreateMd5(regPass);
-                rep.SignUp(regUsername, hashPass);
-                return Redirect("/Auth/Auth");
+                if (rep.GetUser(user.Login) == null)
+                {
+                    string hashPass = Hash.CreateMd5(user.Password);
+                    rep.SignUp(user.Login, hashPass);
+                    return Redirect("/Auth/Auth");
+                }
             }
             return View();
         }
