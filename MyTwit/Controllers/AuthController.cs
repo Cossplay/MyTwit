@@ -17,7 +17,9 @@ namespace MyTwit.Controllers
         public ActionResult SignIn(User user)
         {
             User getUser = null;
-            if (ModelState.IsValid && (getUser = repo.GetUser(user.Login)) != null)
+
+            getUser = repo.GetUser(user.Login);
+            if (getUser != null)
             {
                 var res = Hash.VerifyMd5Hash(user.Password, getUser.Password);
                 if (res)
@@ -26,8 +28,9 @@ namespace MyTwit.Controllers
                     Session["Login"] = getUser.Login;
                     return Redirect("/Home/Index");
                 }
-                Session["IsAuth"] = false;
             }
+            Session["IsAuth"] = false;
+
             return View("Auth", getUser);
         }
         //При обращении к Auth url

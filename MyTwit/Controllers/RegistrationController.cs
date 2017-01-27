@@ -24,16 +24,17 @@ namespace MyTwit.Controllers
         [HttpPost]
         public ActionResult SignUp(User user)
         {
-            if (ModelState.IsValid)
+            if (rep.GetUser(user.Login) == null)
             {
-                if (rep.GetUser(user.Login) == null)
-                {
-                    string hashPass = Hash.CreateMd5(user.Password);
-                    rep.SignUp(user.Login, hashPass);
-                    return Redirect("/Auth/Auth");
-                }
+                string hashPass = Hash.CreateMd5(user.Password);
+                rep.SignUp(user.Login, hashPass);
+                return Redirect("/Auth/Auth");
             }
             return View();
+        }
+        public JsonResult IsExist(string Login)
+        {
+            return Json(rep.GetUser(Login) == null, JsonRequestBehavior.AllowGet);
         }
     }
 }
