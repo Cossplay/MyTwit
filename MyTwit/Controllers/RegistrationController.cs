@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MyTwit.Interfaces;
 using MyTwit.Models;
+using System.Web.Routing;
 
 namespace MyTwit.Controllers
 {
@@ -32,9 +33,21 @@ namespace MyTwit.Controllers
             }
             return View();
         }
+        // Remote метод для поля Login
         public JsonResult IsExist(string Login)
         {
-            return Json(rep.GetUser(Login) == null, JsonRequestBehavior.AllowGet);
-        }
+            bool result = false;
+
+            var route = ((Route)RouteTable.Routes["Default"]).Defaults;
+            var defaultUrl = Url.RouteUrl("Default", route);
+            var fullDefaultUrl = $"/{route["controller"]}/{route["action"]}";
+            var referer = Request.UrlReferrer.AbsolutePath;
+
+            if (defaultUrl.Equals(referer) || fullDefaultUrl.Equals(referer))
+                result = true;
+            else
+                result = rep.GetUser(Login) == null;
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }   
     }
 }
