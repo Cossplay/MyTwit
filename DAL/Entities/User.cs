@@ -1,13 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
 
-namespace MyTwit.Models
+namespace MyTwit.DAL.Entities
 {
     public class User
     {
         [Required]
         [RegularExpression(@"[a-zA-Z0-9]+", ErrorMessage = "Некорректный адрес")]
-        [Remote("IsExist", "Registration", ErrorMessage = "Такой логин уже существует")]
+        //[Remote("IsExist", "Registration", ErrorMessage = "Такой логин уже существует")]
         public string Login { get; set; }
 
         [Required]
@@ -16,7 +15,7 @@ namespace MyTwit.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         public string ConfirmPassword { get; set; }
     }
 }

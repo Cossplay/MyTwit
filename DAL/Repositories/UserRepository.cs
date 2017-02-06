@@ -1,8 +1,9 @@
 ﻿
 using MySql.Data.MySqlClient;
-using MyTwit.Interfaces;
+using MyTwit.DAL.Entities;
+using MyTwit.DAL.Interfaces;
 
-namespace MyTwit.Models
+namespace MyTwit.DAL.Repositories
 {
     public class UserRepository : IUserRepository
     {

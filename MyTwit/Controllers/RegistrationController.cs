@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿
 using System.Web.Mvc;
-using MyTwit.Interfaces;
-using MyTwit.Models;
-using System.Web.Routing;
+using MyTwit.Util;
+using MyTwit.DAL.Entities;
+using MyTwit.DAL.Interfaces;
 
 namespace MyTwit.Controllers
 {
@@ -34,7 +31,7 @@ namespace MyTwit.Controllers
             return View();
         }
         // Remote метод для поля Login
-        public JsonResult IsExist(string Login)
+     /*   public JsonResult IsExist(string Login)
         {
             bool result = false;
 
@@ -48,6 +45,6 @@ namespace MyTwit.Controllers
             else
                 result = rep.GetUser(Login) == null;
             return Json(result, JsonRequestBehavior.AllowGet);
-        }   
+        } */  
     }
 }

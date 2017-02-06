@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
-using MyTwit.Interfaces;
-using MyTwit.Models;
+using MyTwit.Util;
+using MyTwit.DAL.Entities;
+using MyTwit.DAL.Interfaces;
 
 namespace MyTwit.Controllers
 {

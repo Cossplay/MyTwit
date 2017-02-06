@@ -1,11 +1,11 @@
 ﻿@using System.Web.Script.Services
-@model MyTwit.Models.User
+@model MyTwit.DAL.Entities.User
 
 @{
     ViewBag.Title = "html for login";
 }
 
-<h2>Auth</h2>
+<h2>Вход</h2>
 <form role="form" method="post" action="@Url.Action("SignIn", "Auth")">
     <div class="form-group">
         <label>@Html.DisplayName("Login")</label>

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using MyTwit.Interfaces;
-using MyTwit.Models;
 using Ninject;
+using MyTwit.DAL.Interfaces;
+using MyTwit.DAL.Repositories;
 
 namespace MyTwit.Util
 {
