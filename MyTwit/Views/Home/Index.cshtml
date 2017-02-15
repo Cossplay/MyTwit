@@ -5,16 +5,21 @@
 
 <h2>@Session["Login"]</h2>
 <input type="button" class="btn btn-danger" value="Выход" onclick="location.href = '@Url.Action("Out","Auth")'"/>
-<!--<script type="text/javascript">
-    $(document).ready(function() {
-        $("#out").click(function () {
-            $.ajax({
-                type: "GET",
-                url: '@Url.Action("Out", "Auth")',
-                success: function (data) {
-                    location.href = data;
-                }
-            });
-        });
-    })
-</script>-->
+<p id="twitter"></p>
+<form role="form" method="post" action="@Url.Action("AddNewTwit", "Home")">
+    <input type="text" name="message" />
+    <input type="submit" value="send"/>
+</form>
+@section scripts{
+<script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+<script src="~/SignalR/Hubs"></script>
+<script type="text/javascript">
+    $(function () {
+        var twitterHub = $.connection.twitterHub;
+        twitterHub.client.addNewTwit = function (message) {
+            $('#twitter').html(message);
+        };
+        $.connection.hub.start();
+    });
+</script>
+     }
