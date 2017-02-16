@@ -19,7 +19,7 @@ namespace MyTwit.Controllers
         {
             User getUser = null;
 
-            getUser = repo.GetUser(user.Login);
+            getUser = repo.Get(user.Login);
             if (getUser != null)
             {
                 var res = Hash.VerifyMd5Hash(user.Password, getUser.Password);

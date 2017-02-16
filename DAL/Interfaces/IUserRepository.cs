@@ -1,11 +1,11 @@
 ﻿
+using DAL.Interfaces;
 using MyTwit.DAL.Entities;
 
 namespace MyTwit.DAL.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository: IRepository<User>
     {
-        User GetUser(string username);
-        void SignUp(string username, string pass);
+       // User GetUser(string username);
     }
 }

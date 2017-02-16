@@ -22,10 +22,10 @@ namespace MyTwit.Controllers
         [HttpPost]
         public ActionResult SignUp(User user)
         {
-            if (rep.GetUser(user.Login) == null)
+            if (rep.Get(user.Login) == null)
             {
-                string hashPass = Hash.CreateMd5(user.Password);
-                rep.SignUp(user.Login, hashPass);
+                user.Password = Hash.CreateMd5(user.Password);
+                rep.Create(user);
                 return Redirect("/Auth/Auth");
             }
             return View();
