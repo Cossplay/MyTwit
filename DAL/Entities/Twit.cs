@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    class Twit
+    public class Twit
     {
         int TwitId { get; }
 
@@ -15,5 +15,6 @@ namespace DAL.Entities
         string TwitText { get; set; }
         string Username { get; set; }
         DateTime TwitTime { get { return DateTime.Now; } }
+        int Likes { get; set; }
     }
 }

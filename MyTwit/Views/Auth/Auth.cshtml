@@ -5,21 +5,24 @@
     ViewBag.Title = "html for login";
 }
 
-<h2>Вход</h2>
-<form role="form" method="post" action="@Url.Action("SignIn", "Auth")">
-    <div class="form-group">
-        <label>@Html.DisplayName("Login")</label>
-        @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control", @placeholder = "Введите логин" } })
-        @Html.ValidationMessageFor(model => model.Login)
-    </div>
-    <div class="form-group">
-        <label>@Html.DisplayName("Password")</label>
-        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Введите пароль" } })
-        @Html.ValidationMessageFor(model => model.Password)
-    </div>
-    <input type="button" class="btn btn-primary" value="Зарегаться" onclick="location.href = '@Url.Action("SignUp","Registration")'"/>
-    <input type="submit" class="btn btn-success">
-</form>
+
+<div class="row">    
+    <form role="form" method="post" action="@Url.Action("SignIn", "Auth")" class="col-md-offset-4">
+        <h2>Вход</h2>
+        <div class="form-group">
+            <label>@Html.DisplayName("Login")</label>
+            @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control", @placeholder = "Введите логин" } })
+            @Html.ValidationMessageFor(model => model.Login)
+        </div>
+        <div class="form-group">
+            <label>@Html.DisplayName("Password")</label>
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Введите пароль" } })
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+        <input type="button" class="btn btn-primary" value="Зарегаться" onclick="location.href = '@Url.Action("SignUp","Registration")'" />
+        <input type="submit" class="btn btn-success">
+    </form>
+</div>
 <!--<script type="text/javascript">
     $(document).ready(function() {
         $("#button").click(function () {

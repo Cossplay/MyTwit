@@ -215,6 +215,7 @@
     <Content Include="Views\Auth\Auth.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Registration\SignUp.cshtml" />
+    <Content Include="Views\Home\Twit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

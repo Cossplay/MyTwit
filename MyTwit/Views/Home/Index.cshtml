@@ -4,12 +4,25 @@
 }
 
 <h2>@Session["Login"]</h2>
-<input type="button" class="btn btn-danger" value="Выход" onclick="location.href = '@Url.Action("Out","Auth")'"/>
+
 <p id="twitter"></p>
 <form role="form" method="post" action="@Url.Action("AddNewTwit", "Home")">
     <input type="text" name="message" />
     <input type="submit" value="send"/>
 </form>
+
+<div class="row panel">
+    <div id="categories" class="col-xs-4">
+        ЗДЕСЬ БУДЕТ ЛИЧНЫЕ ТВИТЫ
+    </div>
+    <div class="col-xs-6">
+        @Html.Partial("Twit");
+    </div>
+</div>
+<footer>
+    <input type="button" class="btn btn-danger" value="Выход" onclick="location.href = '@Url.Action("Out","Auth")'" />
+</footer>
+
 @section scripts{
 <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
 <script src="~/SignalR/Hubs"></script>
