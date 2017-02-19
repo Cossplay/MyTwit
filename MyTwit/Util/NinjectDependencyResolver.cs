@@ -4,6 +4,8 @@ using System.Web.Mvc;
 using Ninject;
 using MyTwit.DAL.Interfaces;
 using MyTwit.DAL.Repositories;
+using DAL.Interfaces;
+using DAL.Repositories;
 
 namespace MyTwit.Util
 {
@@ -26,6 +28,7 @@ namespace MyTwit.Util
         private void AddBindings()
         {
             kernel.Bind<IUserRepository>().To<UserRepository>();
+            kernel.Bind<ITwitRepository>().To<TwitRepository>();
         }
     }
 }

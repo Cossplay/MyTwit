@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<DAL.Entities.Twit>
 @{
     ViewBag.Title = "main html";
 }
@@ -16,7 +16,10 @@
         ЗДЕСЬ БУДЕТ ЛИЧНЫЕ ТВИТЫ
     </div>
     <div class="col-xs-6">
-        @Html.Partial("Twit");
+        @foreach(var t in @Model)
+        {
+            @Html.Partial("Twit", t);
+        }     
     </div>
 </div>
 <footer>

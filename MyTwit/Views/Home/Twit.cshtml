@@ -2,9 +2,32 @@
 
 <div class="well">
     <h3>
-        <strong>НИК</strong>
-        <span class="pull-right label label-primary">LIKES</span>
+        @Html.HiddenFor(m => m.TwitId)
+        <strong>@Model.Username</strong>
+        Likes<button type="button" id="likes" class="btn btn-primary pull-right" data-toggle="button" aria-pressed="false" autocomplete="off">@Model.Likes</button>
     </h3> 
-    <span class="lead">ОПИсАНИЕ</span>
-    <span class="pull-right label label-primary">DATE</span>
+    <span class="lead">@Model.TwitText</span>
+    <span class="pull-right label label-primary">@Model.TwitTime</span>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var actionUrl = false;
+        $('.btn').on('click', function () {
+            if (!$(this).hasClass('active'))
+                actionUrl = '@Url.Action("LikeTwit", "Home")';
+            else
+                actionUrl = '@Url.Action("UnlikeTwit", "Home")';
+
+            $.ajax({
+                url: actionUrl,
+                type: 'GET',
+                data: { twitId : $('#TwitId').val(), cntLikes : $('#likes').text() },
+                success: function (msg) {
+                    var cnt = $('#likes').text();
+                    cnt = msg ? ++cnt : --cnt;
+                    $('#likes').html(cnt);
+                }
+            });
+        });
+    });
+</script>

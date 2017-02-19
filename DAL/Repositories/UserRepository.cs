@@ -3,6 +3,7 @@ using System;
 using MySql.Data.MySqlClient;
 using MyTwit.DAL.Entities;
 using MyTwit.DAL.Interfaces;
+using DAL.Repositories;
 
 namespace MyTwit.DAL.Repositories
 {

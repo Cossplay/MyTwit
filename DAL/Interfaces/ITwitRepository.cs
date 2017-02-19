@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    interface ITwitRepository : IRepository<Twit>
+    public interface ITwitRepository : IRepository<Twit>
     {
         IEnumerable<Twit> GetAll();
+        void Like(int twitId, int cntLikes);
+        void Unlike(int twitId, int cntLikes);
     }
 }
